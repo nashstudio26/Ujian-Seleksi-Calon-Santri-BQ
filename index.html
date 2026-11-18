@@ -183,12 +183,30 @@
             opacity: 0;
             animation: galleryTileReveal 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
+
+        /* Animasi halus lembut saat setiap section memasuki layar */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .section-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .gallery-modal-animate,
             .gallery-tile-animate {
                 animation: none !important;
                 opacity: 1 !important;
                 transform: none !important;
+            }
+            .section-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
             }
         }
     </style>
@@ -200,8 +218,8 @@
          ===================================================================== -->
     <script>
         const SITE_CONFIG = {
-            GOOGLE_FORM_URL: "GANTI_DENGAN_LINK_GOOGLE_FORM",
-            WHATSAPP_URL: "https://wa.me/6283897889350",
+            GOOGLE_FORM_URL: "https://forms.gle/33nRcigoWEJKDhTW7",
+            WHATSAPP_URL: "https://wa.me/6283897889350?text=" + encodeURIComponent("Assalamu'alaikum warahmatullahi wabarakatuh, Admin KMA Baitul Qur'an Slogohimo. Saya ingin bertanya mengenai informasi pendaftaran calon santri baru."),
             MAPS_URL: "https://maps.app.goo.gl/KjD1YqcAcmpPpCUo9",
             // Endpoint lh3.googleusercontent.com mempertahankan kanal alpha PNG transparan tanpa kotak hitam
             LOGO_PRIMARY_URL: "https://lh3.googleusercontent.com/d/1LALXms6q_cctYtN_nolPCAmz6bXrRikP",
@@ -224,7 +242,7 @@
         <!-- =====================================================================
              HERO SECTION (EDITORIAL MASTHEAD: LOGO TRANSPARAN & IDENTITAS LEMBAGA)
              ===================================================================== -->
-        <section id="beranda" class="border-b border-emerald-950/15 bg-paper-base">
+        <section id="beranda" class="section-reveal is-visible border-b border-emerald-950/15 bg-paper-base">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                 <div class="flex flex-col sm:flex-row items-center sm:items-center gap-5 sm:gap-8 text-center sm:text-left">
                     <!-- Logo Resmi Transparan -->
@@ -267,7 +285,7 @@
         <!-- =====================================================================
              VISI LEMBAGA & KEUNGGULAN PENDIDIKAN (EDITORIAL PROSPECTUS LAYOUT)
              ===================================================================== -->
-        <section id="profil" class="border-b border-emerald-950/15 bg-paper-base">
+        <section id="profil" class="section-reveal border-b border-emerald-950/15 bg-paper-base">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-11 space-y-9">
                 
                 <!-- VISI RESMI (Tata Letak Tipografi Editorial dengan Aksen Emas Halus) -->
@@ -325,7 +343,7 @@
         <!-- =====================================================================
              PROGRAM PENDIDIKAN & MATERI PELAJARAN
              ===================================================================== -->
-        <section id="program" class="py-8 sm:py-11 border-b border-emerald-950/15 bg-paper-warm/50">
+        <section id="program" class="section-reveal py-8 sm:py-11 border-b border-emerald-950/15 bg-paper-warm/50">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-9">
                 
                 <!-- TIGA PROGRAM PENDIDIKAN -->
@@ -340,7 +358,7 @@
                             <!-- 1. KMI Putra -->
                             <article class="p-5 sm:p-6">
                                 <span class="inline-block text-[11px] font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded mb-2.5">
-                                    Program Utama Putra
+                                    Program Putra
                                 </span>
                                 <h3 class="font-serif text-xl sm:text-2xl font-medium text-emerald-950 leading-snug">
                                     Kulliyatul Mu'allimin Al Islamiyah (Putra)
@@ -350,7 +368,7 @@
                             <!-- 2. KMI Putri -->
                             <article class="p-5 sm:p-6">
                                 <span class="inline-block text-[11px] font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded mb-2.5">
-                                    Program Utama Putri
+                                    Program Putri
                                 </span>
                                 <h3 class="font-serif text-xl sm:text-2xl font-medium text-emerald-950 leading-snug">
                                     Kulliyatul Mu'allimat Al Islamiyah (Putri)
@@ -361,9 +379,6 @@
                         <!-- 3. Program Kesetaraan Paket C (Komposisi Horizontal Bersih & Selaras) -->
                         <article class="bg-paper-base border border-emerald-950/15 border-l-4 border-l-gold-500 rounded p-5 sm:px-7 sm:py-6 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-center">
                             <div class="md:col-span-5">
-                                <span class="inline-block text-[11px] font-semibold uppercase tracking-wider text-gold-600 mb-1">
-                                    Program Kesetaraan Formal
-                                </span>
                                 <h3 class="font-serif text-xl sm:text-2xl font-medium text-emerald-950 leading-snug">
                                     Program Kesetaraan Paket C
                                 </h3>
@@ -379,9 +394,8 @@
 
                 <!-- MATERI PELAJARAN (Grid 4 Kolom Desktop, 2 Kolom Mobile) -->
                 <div>
-                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-3">
+                    <div class="mb-3">
                         <h2 class="font-serif text-xl sm:text-2xl font-medium text-emerald-950">Materi Pelajaran</h2>
-                        <span class="text-xs text-paper-mute">Kurikulum dasar keislaman dan bahasa</span>
                     </div>
 
                     <div class="grid grid-cols-2 md:grid-cols-4 bg-paper-base border-t border-l border-emerald-950/15">
@@ -426,7 +440,7 @@
         <!-- =====================================================================
              EKSTRAKURIKULER (NATIVE HARDWARE SWIPE CAROUSEL, RINGAN & TANPA AUTOPLAY)
              ===================================================================== -->
-        <section id="kegiatan" class="py-8 sm:py-11 border-b border-emerald-950/15">
+        <section id="kegiatan" class="section-reveal py-8 sm:py-11 border-b border-emerald-950/15">
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
                     <h2 class="font-serif text-2xl sm:text-3xl font-medium text-emerald-950">
@@ -452,10 +466,9 @@
                     <!-- 1. Berkebun -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1416879598555-52079c88126e?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=640"
                                  alt="Ekstrakurikuler Berkebun"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Berkebun'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -467,10 +480,10 @@
                     <!-- 2. Tataboga -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://lh3.googleusercontent.com/d/1SkHub3KXhbyXAc_MSVGFxmR8Jz9mQe_r"
+                                 onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='https://drive.google.com/uc?export=view&id=1SkHub3KXhbyXAc_MSVGFxmR8Jz9mQe_r';}"
                                  alt="Ekstrakurikuler Tataboga"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Tataboga'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -482,11 +495,10 @@
                     <!-- 3. Berenang -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1519315901367-f34f815b6719?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=640"
                                  alt="Ekstrakurikuler Berenang"
                                  loading="lazy"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Berenang'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -498,11 +510,10 @@
                     <!-- 4. Setir Mobil -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://images.pexels.com/photos/13861/IMG_3496bfree.jpg?auto=compress&cs=tinysrgb&w=640"
                                  alt="Ekstrakurikuler Setir Mobil"
                                  loading="lazy"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Setir+Mobil'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -514,11 +525,10 @@
                     <!-- 5. Karate -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://images.pexels.com/photos/7045561/pexels-photo-7045561.jpeg?auto=compress&cs=tinysrgb&w=640"
                                  alt="Ekstrakurikuler Karate"
                                  loading="lazy"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Karate'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -530,11 +540,11 @@
                     <!-- 6. Public Speaking -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://lh3.googleusercontent.com/d/1cKK_ptuOphelP3z4NBmoy-UBRtGd8SAj"
+                                 onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='https://drive.google.com/uc?export=view&id=1cKK_ptuOphelP3z4NBmoy-UBRtGd8SAj';}"
                                  alt="Ekstrakurikuler Public Speaking"
                                  loading="lazy"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Public+Speaking'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -546,11 +556,10 @@
                     <!-- 7. Memanah -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://images.pexels.com/photos/6540736/pexels-photo-6540736.jpeg?auto=compress&cs=tinysrgb&w=640"
                                  alt="Ekstrakurikuler Memanah"
                                  loading="lazy"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Memanah'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -562,11 +571,11 @@
                     <!-- 8. Menjahit -->
                     <figure class="native-slide">
                         <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/10">
-                            <img src="https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?auto=format&fit=crop&w=480&q=75"
+                            <img src="https://lh3.googleusercontent.com/d/1K04fZF0y67bWZPUZHpAbukbtFzywYdKL"
+                                 onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='https://drive.google.com/uc?export=view&id=1K04fZF0y67bWZPUZHpAbukbtFzywYdKL';}"
                                  alt="Ekstrakurikuler Menjahit"
                                  loading="lazy"
                                  decoding="async"
-                                 onerror="this.src='https://placehold.co/480x360/0B3E2B/FFFFFF?text=Menjahit'"
                                  class="w-full h-full object-cover">
                         </div>
                         <figcaption class="pt-2.5 flex items-baseline justify-between">
@@ -584,7 +593,7 @@
         <!-- =====================================================================
              INFORMASI & TATA CARA UJIAN SELEKSI CALON SANTRI
              ===================================================================== -->
-        <section id="ujian-seleksi" class="py-8 sm:py-11 border-b border-emerald-950/15 bg-paper-base">
+        <section id="ujian-seleksi" class="section-reveal py-8 sm:py-11 border-b border-emerald-950/15 bg-paper-base">
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
                 <!-- Tajuk Section -->
                 <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-5 border-b border-emerald-950/15">
@@ -607,9 +616,9 @@
                             <h3 class="font-serif text-lg font-medium text-emerald-950">Alur Pelaksanaan Ujian</h3>
                         </div>
                         <ul class="space-y-2 text-xs sm:text-sm text-paper-mute leading-relaxed list-disc pl-4">
-                            <li>[Placeholder: Tahap 1, Mengisi identitas lengkap calon santri pada lembar formulir ujian.]</li>
-                            <li>[Placeholder: Tahap 2, Mengerjakan seluruh soal seleksi sesuai waktu dan jadwal panitia.]</li>
-                            <li>[Placeholder: Tahap 3, Mengirimkan jawaban dan menunggu pengumuman resmi dari panitia.]</li>
+                            <li>Tahap 1, Mengisi identitas lengkap calon santri pada lembar formulir ujian.</li>
+                            <li>Tahap 2, Mengerjakan seluruh soal seleksi sesuai waktu dan jadwal panitia.</li>
+                            <li>Tahap 3, Mengirimkan jawaban dan menunggu pengumuman resmi dari panitia.</li>
                         </ul>
                     </div>
 
@@ -620,9 +629,9 @@
                             <h3 class="font-serif text-lg font-medium text-emerald-950">Peraturan Ujian</h3>
                         </div>
                         <ul class="space-y-2 text-xs sm:text-sm text-paper-mute leading-relaxed list-disc pl-4">
-                            <li>[Placeholder: Peserta wajib mengerjakan soal secara jujur, mandiri, dan tanpa bantuan pihak lain.]</li>
-                            <li>[Placeholder: Ketentuan batas waktu pengerjaan dan kesempatan pengisian formulir.]</li>
-                            <li>[Placeholder: Sanksi apabila ditemukan pelanggaran selama proses ujian berlangsung.]</li>
+                            <li>Peserta wajib mengerjakan soal secara jujur, mandiri, dan tanpa bantuan pihak lain.</li>
+                            <li>Ketentuan batas waktu pengerjaan dan kesempatan pengisian formulir mengikuti arahan panitia.</li>
+                            <li>Pelanggaran terhadap tata tertib selama ujian berlangsung akan dikenakan sanksi sesuai ketentuan pesantren.</li>
                         </ul>
                     </div>
 
@@ -633,9 +642,9 @@
                             <h3 class="font-serif text-lg font-medium text-emerald-950">Tata Cara Mengerjakan Ujian</h3>
                         </div>
                         <ul class="space-y-2 text-xs sm:text-sm text-paper-mute leading-relaxed list-disc pl-4">
-                            <li>[Placeholder: Pastikan perangkat memiliki koneksi internet yang stabil sebelum memulai.]</li>
-                            <li>[Placeholder: Periksa kembali kebenaran penulisan nama lengkap dan nomor kontak aktif.]</li>
-                            <li>[Placeholder: Pastikan semua pertanyaan telah terjawab sebelum menekan tombol Kirim.]</li>
+                            <li>Pastikan perangkat memiliki koneksi internet yang stabil sebelum memulai.</li>
+                            <li>Periksa kembali kebenaran penulisan nama lengkap dan nomor kontak aktif.</li>
+                            <li>Pastikan semua pertanyaan telah terjawab sebelum menekan tombol Kirim.</li>
                         </ul>
                     </div>
                 </div>
@@ -664,7 +673,7 @@
         <!-- =====================================================================
              KONTAK, LOKASI & FOOTER TERPADU (EDITORIAL DIRECTORY COLOPHON)
              ===================================================================== -->
-        <footer id="kontak" class="bg-paper-warm/75">
+        <footer id="kontak" class="section-reveal bg-paper-warm/75">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-11 pb-8">
                 
                 <!-- Header Direktori Kontak -->
@@ -694,7 +703,7 @@
                             </div>
                         </div>
                         <div class="shrink-0">
-                            <a href="https://wa.me/6283897889350" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-900 hover:bg-emerald-950 text-white text-xs font-semibold rounded transition-colors">
+                            <a id="waContactBtn" href="https://wa.me/6283897889350?text=Assalamu'alaikum%20warahmatullahi%20wabarakatuh%2C%20Admin%20KMA%20Baitul%20Qur'an%20Slogohimo.%20Saya%20ingin%20bertanya%20mengenai%20informasi%20pendaftaran%20calon%20santri%20baru." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-900 hover:bg-emerald-950 text-white text-xs font-semibold rounded transition-colors">
                                 <span>Hubungi Kami</span>
                                 <span aria-hidden="true">&rarr;</span>
                             </a>
@@ -839,32 +848,32 @@
                 </button>
             </div>
 
-            <!-- Isi Modal: 3 Bagian dengan Placeholder Jelas & Mudah Diedit -->
+            <!-- Isi Modal: 3 Bagian Ketentuan Ujian -->
             <div class="p-5 overflow-y-auto space-y-5 text-xs sm:text-sm text-paper-ink">
                 <section class="pb-4 border-b border-emerald-950/10">
                     <h4 class="font-bold text-emerald-950 mb-1.5">1. Alur Pelaksanaan Ujian</h4>
                     <ul class="list-disc pl-5 space-y-1 text-paper-mute">
-                        <li>[Placeholder: Tahap 1, Mengisi identitas lengkap calon santri pada lembar formulir ujian.]</li>
-                        <li>[Placeholder: Tahap 2, Mengerjakan seluruh soal seleksi sesuai waktu dan jadwal panitia.]</li>
-                        <li>[Placeholder: Tahap 3, Mengirimkan jawaban dan menunggu pengumuman resmi dari panitia.]</li>
+                        <li>Tahap 1, Mengisi identitas lengkap calon santri pada lembar formulir ujian.</li>
+                        <li>Tahap 2, Mengerjakan seluruh soal seleksi sesuai waktu dan jadwal panitia.</li>
+                        <li>Tahap 3, Mengirimkan jawaban dan menunggu pengumuman resmi dari panitia.</li>
                     </ul>
                 </section>
 
                 <section class="pb-4 border-b border-emerald-950/10">
                     <h4 class="font-bold text-emerald-950 mb-1.5">2. Peraturan Ujian</h4>
                     <ul class="list-disc pl-5 space-y-1 text-paper-mute">
-                        <li>[Placeholder: Peserta wajib mengerjakan soal secara jujur, mandiri, dan tanpa bantuan pihak lain.]</li>
-                        <li>[Placeholder: Ketentuan batas waktu pengerjaan dan kesempatan pengisian formulir.]</li>
-                        <li>[Placeholder: Sanksi apabila ditemukan pelanggaran selama proses ujian berlangsung.]</li>
+                        <li>Peserta wajib mengerjakan soal secara jujur, mandiri, dan tanpa bantuan pihak lain.</li>
+                        <li>Ketentuan batas waktu pengerjaan dan kesempatan pengisian formulir mengikuti arahan panitia.</li>
+                        <li>Pelanggaran terhadap tata tertib selama ujian berlangsung akan dikenakan sanksi sesuai ketentuan pesantren.</li>
                     </ul>
                 </section>
 
                 <section>
                     <h4 class="font-bold text-emerald-950 mb-1.5">3. Tata Cara Mengerjakan Ujian</h4>
                     <ul class="list-disc pl-5 space-y-1 text-paper-mute">
-                        <li>[Placeholder: Pastikan perangkat memiliki koneksi internet yang stabil sebelum memulai.]</li>
-                        <li>[Placeholder: Periksa kembali kebenaran penulisan nama lengkap dan nomor kontak aktif.]</li>
-                        <li>[Placeholder: Pastikan semua pertanyaan telah terjawab sebelum menekan tombol Kirim.]</li>
+                        <li>Pastikan perangkat memiliki koneksi internet yang stabil sebelum memulai.</li>
+                        <li>Periksa kembali kebenaran penulisan nama lengkap dan nomor kontak aktif.</li>
+                        <li>Pastikan semua pertanyaan telah terjawab sebelum menekan tombol Kirim.</li>
                     </ul>
                 </section>
             </div>
@@ -945,43 +954,46 @@
         const EXTRACURRICULAR_ITEMS = [
             {
                 title: "Berkebun",
-                thumb: "https://images.unsplash.com/photo-1416879598555-52079c88126e?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1416879598555-52079c88126e?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=640",
+                full: "https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=1280"
             },
             {
                 title: "Tataboga",
-                thumb: "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://lh3.googleusercontent.com/d/1SkHub3KXhbyXAc_MSVGFxmR8Jz9mQe_r",
+                full: "https://lh3.googleusercontent.com/d/1SkHub3KXhbyXAc_MSVGFxmR8Jz9mQe_r",
+                fallback: "https://drive.google.com/uc?export=view&id=1SkHub3KXhbyXAc_MSVGFxmR8Jz9mQe_r"
             },
             {
                 title: "Berenang",
-                thumb: "https://images.unsplash.com/photo-1519315901367-f34f815b6719?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1519315901367-f34f815b6719?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=640",
+                full: "https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=1280"
             },
             {
                 title: "Setir Mobil",
-                thumb: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://images.pexels.com/photos/13861/IMG_3496bfree.jpg?auto=compress&cs=tinysrgb&w=640",
+                full: "https://images.pexels.com/photos/13861/IMG_3496bfree.jpg?auto=compress&cs=tinysrgb&w=1280"
             },
             {
                 title: "Karate",
-                thumb: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://images.pexels.com/photos/7045561/pexels-photo-7045561.jpeg?auto=compress&cs=tinysrgb&w=640",
+                full: "https://images.pexels.com/photos/7045561/pexels-photo-7045561.jpeg?auto=compress&cs=tinysrgb&w=1280"
             },
             {
                 title: "Public Speaking",
-                thumb: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://lh3.googleusercontent.com/d/1cKK_ptuOphelP3z4NBmoy-UBRtGd8SAj",
+                full: "https://lh3.googleusercontent.com/d/1cKK_ptuOphelP3z4NBmoy-UBRtGd8SAj",
+                fallback: "https://drive.google.com/uc?export=view&id=1cKK_ptuOphelP3z4NBmoy-UBRtGd8SAj"
             },
             {
                 title: "Memanah",
-                thumb: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://images.pexels.com/photos/6540736/pexels-photo-6540736.jpeg?auto=compress&cs=tinysrgb&w=640",
+                full: "https://images.pexels.com/photos/6540736/pexels-photo-6540736.jpeg?auto=compress&cs=tinysrgb&w=1280"
             },
             {
                 title: "Menjahit",
-                thumb: "https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?auto=format&fit=crop&w=480&q=75",
-                full: "https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?auto=format&fit=crop&w=1200&q=85"
+                thumb: "https://lh3.googleusercontent.com/d/1K04fZF0y67bWZPUZHpAbukbtFzywYdKL",
+                full: "https://lh3.googleusercontent.com/d/1K04fZF0y67bWZPUZHpAbukbtFzywYdKL",
+                fallback: "https://drive.google.com/uc?export=view&id=1K04fZF0y67bWZPUZHpAbukbtFzywYdKL"
             }
         ];
 
@@ -1000,14 +1012,15 @@
                 btn.className = "gallery-tile-animate group text-left focus:outline-none";
                 btn.onclick = () => openPhotoLightbox(item);
 
-                const fallbackUrl = `https://placehold.co/480x360/0B3E2B/FFFFFF?text=${encodeURIComponent(item.title)}`;
+                const fallbackAttr = item.fallback ? `onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='${item.fallback}';}"` : "";
+
                 btn.innerHTML = `
                     <div class="aspect-[4/3] bg-paper-warm rounded overflow-hidden border border-emerald-950/15 group-hover:border-gold-500 transition-colors">
                         <img src="${item.thumb}"
+                             ${fallbackAttr}
                              alt="Ekstrakurikuler ${item.title}"
                              loading="lazy"
                              decoding="async"
-                             onerror="this.src='${fallbackUrl}'"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <p class="mt-1.5 text-[11px] sm:text-xs font-semibold text-emerald-950 group-hover:text-gold-600 transition-colors truncate">
@@ -1033,10 +1046,13 @@
         }
 
         function openPhotoLightbox(item) {
-            const fallbackFull = `https://placehold.co/1200x900/0B3E2B/FFFFFF?text=${encodeURIComponent(item.title)}`;
-            lightboxImg.onerror = () => {
-                lightboxImg.src = fallbackFull;
-            };
+            delete lightboxImg.dataset.fb;
+            lightboxImg.onerror = item.fallback ? function () {
+                if (!this.dataset.fb) {
+                    this.dataset.fb = "1";
+                    this.src = item.fallback;
+                }
+            } : null;
             lightboxImg.src = item.full;
             lightboxImg.alt = `Ekstrakurikuler ${item.title}`;
             lightboxCaption.textContent = item.title;
@@ -1050,7 +1066,6 @@
         function closePhotoLightbox() {
             photoLightbox.classList.add("hidden");
             photoLightbox.classList.remove("flex");
-            lightboxImg.src = "";
             if (galleryModal.classList.contains("hidden") && examModal.classList.contains("hidden")) {
                 htmlNode.classList.remove("no-scroll");
                 bodyNode.classList.remove("no-scroll");
@@ -1068,10 +1083,35 @@
                 }
             }
         });
-
-        // 2. Inisialisasi Tahun & Native Carousel Ekstrakurikuler
+        // 2. Inisialisasi Tahun, Animasi Section & Native Carousel Ekstrakurikuler
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("yearNow").textContent = new Date().getFullYear();
+
+            // Sinkronkan tautan WhatsApp dari konfigurasi utama
+            const waContactBtn = document.getElementById("waContactBtn");
+            if (waContactBtn) {
+                waContactBtn.href = SITE_CONFIG.WHATSAPP_URL;
+            }
+
+            // Animasi halus lembut tiap user melihat masing-masing section
+            const revealSections = document.querySelectorAll(".section-reveal");
+            if ("IntersectionObserver" in window) {
+                const sectionObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.08,
+                    rootMargin: "0px 0px -30px 0px"
+                });
+
+                revealSections.forEach((sec) => sectionObserver.observe(sec));
+            } else {
+                revealSections.forEach((sec) => sec.classList.add("is-visible"));
+            }
 
             const track = document.getElementById("carouselTrack");
             const slides = Array.from(document.querySelectorAll(".native-slide"));
